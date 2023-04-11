@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Phones</title>
+</head>
+<body class="bg">
+    <div class="container mt-40 mb-30">
+        <h1 class="text-center" style="color: aliceblue;">Phones</h1>
+        <div class="card" id="cards"></div>
+    </div>
+
+    <script>
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "phones.php");
+        xmlhttp.send();
+        xmlhttp.onload = function() {
+            const phones = JSON.parse(this.responseText);
+            const items = document.getElementById('cards');
+            let j = 0;
+            for (const phone of phones) {
+                j++;
+                const row = `
+                    <div class="card">
+                        <div class="front before">
+                            <img src="${phone.image}">
+                        </div>
+                        <div class="front after">
+                            <h3>${phone.brand} ${phone.model}</h3>
+                            <ul>
+                                <li><strong>Price:</strong> ${phone.price}</li>
+                                <li><strong>Release year:</strong> ${phone.release_year}</li>
+                                <li><strong>Display:</strong> ${phone.specifications.display}</li>
+                                <li><strong>Processor:</strong> ${phone.specifications.processor}</li>
+                                <li><strong>Memory:</strong> ${phone.specifications.memory}</li>
+                                <li><strong>Camera:</strong> ${typeof phone.specifications.camera === 'string' ? phone.specifications.camera : `<ul>
+                                    <li><strong>Type:</strong> ${phone.specifications.camera.type}</li>
+                                    <li><strong>Features:</strong> ${phone.specifications.camera.features}</li>
+                                    <li><strong>Video:</strong> ${phone.specifications.camera.video}</li>
+                                </ul>`}</li>
+                                <li><strong>Battery:</strong> ${phone.specifications.battery}</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+                items.innerHTML += row;    
+            }
+        };
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

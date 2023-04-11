@@ -1,0 +1,90 @@
+.card {
+    display: flex;
+  }
+ 
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    background-image: url("https://img.freepik.com/premium-photo/cpu-computer-chip-background_147644-161.jpg?w=900");
+    height: 713px;
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.container h1{
+    text-align: center;
+    font-size: 100px;
+    height: 200px;
+}
+
+.card{
+    position: relative;
+    width: 1100px;
+    height: 400px;
+    margin: 15px;
+}
+
+
+.card .front{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.card .before {
+    transform: perspective(600px) rotateY(0deg);
+    box-shadow: 0 20px 20px #653474;
+}
+    
+.card .before img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: rgba(79, 75, 75, 0.589);
+}
+.card .front h3 {
+    position: absolute;
+    bottom: 0;
+    width: 100px;
+    height: 45px;
+    line-height: 45px;
+    color: rgb(139, 0, 0);
+    text-align: center;
+}
+.card .after {
+    transform: translate3d(0px, 0px, -250px)rotateY(90deg);
+    background-color: rgb(209, 199, 226);
+    padding: 15px;
+    color: rgb(12, 12, 12);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+.card .after h3{
+    font-size: 30px;
+    margin-top: 20px;
+    letter-spacing: 2px;
+}
+.card .back h3{
+    font-size: 30px;
+    margin-top: 20px;
+    letter-spacing: 2px;
+}
+.card :hover .front{
+    transform: translate3d(0px, 5px, -250px);
+}
+.card :hover .after{
+    transform: translate3d(0px, 5px, -250px);
+}
